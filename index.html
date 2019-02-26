@@ -2,7 +2,6 @@
 <html lang="zh">
 
 <head>
-
     <meta charset="UTF-8">
     <title>今天你要嫁给我~</title>
     <link rel="stylesheet" type="text/css" href="index.css">
@@ -11,34 +10,81 @@
 <body>
     <div class="body">
         <div class="left-content">
-            
+            <div id="source" class="source">
+                <label class="th1">2015年06月30日</label>
+                <br />
+                <i>我们相识在酷吧，那时我们都是那儿的实习生。</i><br />
+                <br />
+                <label class="th1">2015年09月27日</label>
+                <br />
+                <i>我们第一次约会吃饭，吃的是呷哺呷哺，饭后直接领了我去见了你的妈妈，这样才算确认关系！</i><br />
+                <br />
+                <label class="th1">2015年12月31日</label>
+                <br />
+                <i>你带我去了的你长大的地方-长春。来到你家，两手空空的我，果然被视为了各种不礼貌。</i><br />
+                <br />
+                <label class="th1">2016年5月1日</label>
+                <br />
+                <i>我们相会在北戴河，那是我们第一次旅行~</i><br />
+                <br />
+                <label class="th1">2017年4月29日</label>
+                <br />
+                <i>我带着你去了我长大的地方，江西武宁县。</i><br />
+                <br />
+                <label class="th1">2018年</label> &nbsp;&nbsp;
+                <i>是我们在一起努力奋斗的一年。</i><br />
+                <br />
+                <label class="th1">至今</label>
+                <i>我们已经在一起 <span id="love-time" class="love-time"></span> 天 </i>
+                <br />
+                <i>我希望能给你更多，更好。所以：</i>
+
+            </div>
+            <div id="output-wrap" class="output-wrap">
+                <span id="output"></span>
+                <span class="typing-cursor">_</span>
+            </div>
+
         </div>
         <div class="right-content">
             <canvas id="pink-heart"></canvas>
             <p class="love-alert">
                 <span class="love-alert-font">&nbsp;&nbsp;嫁 给 我 吧！</span>
-                <br/>
+                <br />
                 <span class="icons">
-                    <img src="images/bxy.jpeg"/>
+                    <img src="images/bxy.jpeg" />
                     <img src="images/tgl.jpeg" />
                 </span>
             </p>
-            
+            <div class="cover-hidden" id="cover-hidden"></div>
         </div>
     </div>
-
-
     <audio id='audio' src='bg.mp3' autoplay loop></audio>
 
 </body>
-<script type="text/javascript" src="js/heart.js"></script>
-
+<script src="js/heart.js"></script>
+<script src="js/typing.js"></script>
 <script>
 
-    (function () {
-        const meetTime = "2015-06-30"; //相识时间
-        const loveTime = "2015-09-27"; //相爱时间
-    })()
+    const loveTime = "2015-09-27"; //在一起的时间
+    let loveTimestamp = Date.parse(new Date(loveTime));
+    let now = Date.parse(new Date());
+    let usedTime = now - loveTimestamp
+    let days = Math.floor(usedTime / (24 * 3600 * 1000));
+    document.getElementById("love-time").innerText = days;
+
+
+    var typing = new Typing({
+        source: document.getElementById('source'),
+        output: document.getElementById('output'),
+        delay: 90,
+        done: function () {
+           document.getElementById("cover-hidden").setAttribute('style', 'display: none');
+        }
+    });
+    typing.start(); // 打字效果
+
+
 </script>
 
 </html>

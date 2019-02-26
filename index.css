@@ -8,7 +8,7 @@
   margin: 0;
 }
 .body {
-    max-width: 1400px;
+    max-width: 1300px;
     height: 100%;
     margin-left: auto;
     margin-right: auto;
@@ -29,7 +29,6 @@ canvas {
   float: left;
   position: relative;
 }
-
 .love-alert {
   z-index: 1;
   width: 100%;
@@ -37,6 +36,16 @@ canvas {
   position: absolute;
   text-align: center;
   font-family: monospace;
+}
+
+.cover-hidden {
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  top:0;
+  left:0;
+  position: absolute;
+  background: #fff;
 }
 
 .love-alert-font {
@@ -55,4 +64,28 @@ canvas {
   width: 80px;
   border-radius: 60px;
   float: left;
+}
+.source {
+  display: none;
+}
+.th1 {
+  font-weight: bolder;
+  font-size: 1em;
+  color:#17233d;
+  font-style: oblique;
+}
+.output-wrap {
+  margin-top: 20%;
+  padding-left: 20px;
+}
+i {
+  color: #515a6e;
+  font-size: 14px;
+  font-family: fantasy;
+}
+.love-time {
+  font-size: 28px;
+  font-weight: bolder;
+  font-family: fantasy;
+  color: red;
 }
