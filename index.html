@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>今天你要嫁给我~</title>
+    <title>Will you marry me?</title>
     <link rel="stylesheet" type="text/css" href="index.css">
 </head>
 
@@ -35,7 +35,7 @@
                 <i>是我们在一起努力奋斗的一年。</i><br />
                 <br />
                 <label class="th1">至今</label>
-                <i>我们已经在一起 <span id="love-time" class="love-time"></span> 天 </i>
+                <i>我们已经在一起 &nbsp;<span id="love-time" class="love-time"></span> &nbsp;天 </i>
                 <br />
                 <i>我希望能给你更多，更好。所以：</i>
 
@@ -52,11 +52,41 @@
                 <span class="love-alert-font">&nbsp;&nbsp;嫁 给 我 吧！</span>
                 <br />
                 <span class="icons">
-                    <img src="images/bxy.jpeg" />
-                    <img src="images/tgl.jpeg" />
+                    <img src="images/tgl_.pic.jpg" />
+                    <img src="images/bxy_.pic.jpg" />
                 </span>
             </p>
-            <div class="cover-hidden" id="cover-hidden"></div>
+            <div class="cover-hidden" id="cover-hidden">
+                <div class="img-content">
+                    <ul class="slider">
+                        <li>
+                            <img src=".\images\91551235577_.pic.jpg" alt="">
+                        </li>
+                        <li>
+                            <img src=".\images\101551235578_.pic.jpg" alt="">
+                        </li>
+                        <li>
+                            <img src=".\images\111551235579_.pic.jpg" alt="">
+                        </li>
+                        <li>
+                            <img src=".\images\121551235580_.pic.jpg" alt="">
+                        </li>
+                        <li>
+                            <img src=".\images\131551235581_.pic.jpg" alt="">
+                        </li>
+                        <li>
+                            <img src=".\images\151551361591_.pic.jpg" alt="">
+                        </li>
+                        <li>
+                            <img src=".\images\161551361598_.pic.jpg" alt="">
+                        </li>
+                        <li>
+                            <img src=".\images\171551361600_.pic.jpg" alt="">
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
         </div>
     </div>
     <audio id='audio' src='bg.mp3' autoplay loop></audio>
@@ -64,7 +94,46 @@
 </body>
 <script src="js/heart.js"></script>
 <script src="js/typing.js"></script>
+<script src="js/jquery-3.3.1.min.js"></script>
 <script>
+
+    //相册轮播
+    let imgList = $('.slider').children()
+    let imgLength = imgList.length //图片的数量
+    let isFading = false; //上锁，自然专场
+    let currentIndex = 0; //记录现在是第几张图
+    let clock;//定时器
+    autoplay()
+    function play() {
+        //第一次不执行
+        if (currentIndex == 0) {
+            currentIndex++
+            return
+        }
+        if (isFading) {
+            return //表示正在进行fadein/fadeout
+        }
+        let index = currentIndex % imgLength - 1
+        isFading = true
+        imgList.eq(index - 1).fadeOut(200)//先让现在的图片消失
+        let ang = index % 2 === 0 ? "-5" : "5"
+        imgList.eq(index).css({ "-webkit-transform": "rotate(" + ang + "deg)" })
+        if (index % 2) {
+            imgList.eq(index).slideDown(2000, function () {
+                isFading = false
+            })
+        } else {
+            imgList.eq(index).fadeIn(2000, function () {
+                isFading = false
+            })
+        }
+        currentIndex++
+    }
+    function autoplay() {
+        clock = setInterval(function () {
+            play()
+        }, 7500)
+    }
 
     const loveTime = "2015-09-27"; //在一起的时间
     let loveTimestamp = Date.parse(new Date(loveTime));
@@ -72,18 +141,16 @@
     let usedTime = now - loveTimestamp
     let days = Math.floor(usedTime / (24 * 3600 * 1000));
     document.getElementById("love-time").innerText = days;
-
-
     var typing = new Typing({
         source: document.getElementById('source'),
         output: document.getElementById('output'),
         delay: 90,
         done: function () {
-           document.getElementById("cover-hidden").setAttribute('style', 'display: none');
+            $("#cover-hidden").fadeOut(1000);
+            clearInterval(clock)
         }
     });
     typing.start(); // 打字效果
-
 
 </script>
 
