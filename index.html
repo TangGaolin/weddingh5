@@ -11,33 +11,31 @@
     <div class="body">
         <div class="left-content">
             <div id="source" class="source">
-                <label class="th1">2015年06月30日</label>
+                <label class="th1">2015-06-30 &nbsp;&nbsp;__相识</label>
                 <br />
-                <i>我们相识在酷吧，那时我们都是那儿的实习生。</i><br />
+                <i>我们相遇在酷吧，那时我们都是那儿的实习生。</i><br />
                 <br />
-                <label class="th1">2015年09月27日</label>
+                <label class="th1">2015-09-27 &nbsp;&nbsp;__交往</label>
                 <br />
-                <i>我们第一次约会吃饭，吃的是呷哺呷哺，饭后直接领了我去见了你的妈妈，这样才算确认关系！</i><br />
+                <i>我们第一次约会吃饭，吃的是呷哺呷哺，后来你直接领了我去见了你的妈妈，你说这才算确认关系！</i><br />
                 <br />
-                <label class="th1">2015年12月31日</label>
+                <label class="th1">2015-12-31</label>
                 <br />
-                <i>你带我去了的你长大的地方-长春。来到你家，两手空空的我，果然被视为了各种不礼貌。</i><br />
+                <i>你带我去了的你长大的地方-长春，话说也没有我想象中的那么冷。</i><br />
                 <br />
-                <label class="th1">2016年5月1日</label>
+                <label class="th1">2016-05-01</label>
                 <br />
-                <i>我们相会在北戴河，那是我们第一次旅行~</i><br />
+                <i>离别后的相聚，我们相会在北戴河，开始我们的第一次旅行，虽然不是很尽兴~</i><br />
                 <br />
-                <label class="th1">2017年4月29日</label>
+                <label class="th1">2017-04-29 &nbsp;&nbsp;__异地</label>
                 <br />
-                <i>我带着你去了我长大的地方，江西武宁县。</i><br />
+                <i>我带着你去那我长大的地方，见了我那热情的家人。可惜饭菜不合你胃口。</i><br />
                 <br />
-                <label class="th1">2018年</label> &nbsp;&nbsp;
-                <i>是我们在一起努力奋斗的一年。</i><br />
+                <label class="th1">2018 &nbsp;&nbsp;__在一起</label> <br />
+                <i>这年，是我们最漂泊的一年，也是一起努力奋斗的一年。</i><br />
                 <br />
-                <label class="th1">至今</label>
-                <i>我们已经在一起 &nbsp;<span id="love-time" class="love-time"></span> &nbsp;天 </i>
-                <br />
-                <i>我希望能给你更多，更好。所以：</i>
+                <label class="th1">2019 &nbsp;&nbsp;__至今 </label> <br />
+                <i>我们已经在一起 <span id="love-time" class="love-time"></span> 天，我希望能给你更多，更好。所以：</i>
 
             </div>
             <div id="output-wrap" class="output-wrap">
@@ -103,23 +101,26 @@
     let isFading = false; //上锁，自然专场
     let currentIndex = 0; //记录现在是第几张图
     let clock;//定时器
+    play()
     autoplay()
     function play() {
-        //第一次不执行
+        let ang = currentIndex % 2 === 0 ? "-5" : "5"
+        //第一次特殊处理
         if (currentIndex == 0) {
+            imgList.eq(currentIndex).css({ "-webkit-transform": "rotate(" + ang + "deg)" })
+            imgList.eq(currentIndex).delay(4000).fadeIn(2000)
             currentIndex++
             return
         }
         if (isFading) {
             return //表示正在进行fadein/fadeout
         }
-        let index = currentIndex % imgLength - 1
         isFading = true
-        imgList.eq(index - 1).fadeOut(200)//先让现在的图片消失
-        let ang = index % 2 === 0 ? "-5" : "5"
+        let index = currentIndex % imgLength
+        imgList.eq(index - 1).fadeOut(100)//先让现在的图片消失
         imgList.eq(index).css({ "-webkit-transform": "rotate(" + ang + "deg)" })
         if (index % 2) {
-            imgList.eq(index).slideDown(2000, function () {
+            imgList.eq(index).fadeIn(2000, function () {
                 isFading = false
             })
         } else {
@@ -130,9 +131,12 @@
         currentIndex++
     }
     function autoplay() {
-        clock = setInterval(function () {
-            play()
-        }, 7500)
+        setTimeout(
+            function () {
+                clock = setInterval(function () {
+                    play()
+                }, 7500)
+            }, 5000);
     }
 
     const loveTime = "2015-09-27"; //在一起的时间
