@@ -6,7 +6,9 @@ html, body {
   height: 100%;
   padding: 0;
   margin: 0;
+  background: #ffe9e2;
 }
+
 .body {
   max-width: 1300px;
   height: 100%;
@@ -16,7 +18,6 @@ html, body {
 canvas {
   width: 100%;
   height: 100%;
-  z-index: 0;
 }
 
 ul,
@@ -30,7 +31,37 @@ li {
   width: 50%;
   height: 100%;
   float: left;
+  align-items: center;
+  display: -webkit-flex;
 }
+.source {
+  display: none;
+}
+
+.output-wrap {
+  width: 100%;
+  min-height: 640px;
+}
+.th1 {
+  font-weight: 800;
+  font-size: 1.4em;
+  font-family: serif;
+}
+i {
+  width: 100%;
+  font-size: 1.4em;
+  letter-spacing:2px;
+  font-family: monospace;
+  font-weight: 600;
+  font-style: unset;
+}
+.love-time {
+  font-size: 2.5em;
+  font-weight: bolder;
+  color: #fff;
+  text-shadow: 0 0 16px red;
+}
+
 .right-content {
   width: 50%;
   height: 100%;
@@ -45,7 +76,6 @@ li {
   text-align: center;
   font-family: monospace;
 }
-
 .cover-hidden {
   z-index: 2;
   width: 100%;
@@ -53,9 +83,8 @@ li {
   top:0;
   left:0;
   position: absolute;
-  background: #fff;
+  background: #ffe9e2;
 }
-
 .img-content{
   position: relative;
   display: block;
@@ -82,6 +111,7 @@ li {
   width: 100%;
   border-radius: 10px;
   border: 4px solid #000;
+  box-shadow: 0 0 16px red;
 }
 
 .love-alert-font {
@@ -100,28 +130,4 @@ li {
   width: 80px;
   border-radius: 60px;
   float: left;
-}
-.source {
-  display: none;
-}
-.th1 {
-  font-weight: 800;
-  font-size: 1.4em;
-  font-family: serif;
-}
-.output-wrap {
-  margin-top: 20%;
-  padding-left: 20px;
-}
-i {
-  font-size: 1.4em;
-  letter-spacing:2px;
-  font-family: monospace;
-  font-style: unset;
-}
-.love-time {
-  font-size: 2.5em;
-  font-weight: bolder;
-  color: #fff;
-  text-shadow: 0 0 16px red;
 }
